@@ -1,0 +1,24 @@
+---
+title: "Exoplanet Data Visualizations"
+author: "Ferris Esposito"
+date: "May 28, 2019"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exoplanet Data Visualizations
+Much can be learned about astronomical objects through data visualizations. Using datasets containing various information about exoplanets from **Nasa Exoplanet Archive** and **The Extrasolar Planets Encyclopedia**, I will illustrate various properties of exoplanets. 
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+Exoplanet.Archive <- read.csv(file="composite_planet_data.csv")
+Exoplanet.Catalog <- read.csv(file="exoplanet.eu_catalog.csv")
+```
