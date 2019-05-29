@@ -18,6 +18,7 @@ Much can be learned about astronomical objects through data visualizations. Usin
 library(ggplot2)
 library(colorRamps)
 library(png)
+library(grid)
 ```
 
 ```{r}
@@ -32,11 +33,16 @@ img <- readPNG("star_field.png")
 ```{r}
 ggplot(Exoplanet.Archive, aes(x=fst_logg, y=fst_lum)) + 
   
+  annotation_custom(rasterGrob(img, 
+                               width = unit(1,"npc"), 
+                               height = unit(1,"npc")), 
+                               -Inf, Inf, -Inf, Inf) +
+  
   geom_point(aes(color=fst_teff, size=fst_rad)) +
   
-  scale_colour_gradientn(colors=rev(blue2red(200)), limits=c(3000,            8000), name="Effective Temperature (K)") +
+  scale_colour_gradientn(colors=rev(blue2red(200)), limits=c(3000, 8000), name="Effective Temperature (K)") +
   
-  scale_size_continuous(range=c(0, 8), breaks=c(1, 5, 15, 30, 60), name=      "Stellar Radius [Solar radii]") +
+  scale_size_continuous(range=c(0, 8), breaks=c(1, 5, 15, 30, 60), name="Stellar Radius [Solar radii]") +
  
   ylim(-3, 4) +
   
@@ -46,5 +52,8 @@ ggplot(Exoplanet.Archive, aes(x=fst_logg, y=fst_lum)) +
   theme(plot.title=element_text(size=10))
 ```
 
-```{r}
-```
+This bubble graph plots stellar luminosity (intrinsic brightness) against stellar surface gravity (gravity at the photosphere) of exoplanet host stars. The size of each star represents the stellar radius, while the color represents how hot the star is. It appears larger stars tend to be more luminous -- however, they strangely tend to have less surface gravity as well. Size is often associated with mass -- in turn, the greater the mass of an object, the greater its gravity. Why do stars with greater radii have less surface gravity?
+
+Think about the lifecycle a star. The line of points appearing before all of the blue stars are clearly red, orange, and yellow supergiants and giants. They are low in temperature, but massive in size. This indicates that they are nearing the end of their life -- consequently, the outer layers of those stars contain less mass. Eventually, as the layers of the giants are shed, the mass of their surface generally becomes larger and larger (until its iron core is reached), in turn, increasing the surface gravity of the star. This must be why smaller stars have greater surface gravity. 
+
+The rest of the graph (starting from the cluster of blue stars), resembles the main sequence. Outside of the deviant giants, hotter stars are more luminous and larger in size since they burn through their fuel more quickly. Since hotter stars have more hydrogen at their surface, there is less mass at their surface as hydrogen is the lightest element. In turn, the disparity in gravity between larger, hotter stars along the main sequene is explained.  
