@@ -1,7 +1,7 @@
 ---
 title: "Exoplanet Data Visualizations"
 author: "Ferris Esposito"
-date: "May 28, 2019"
+date: "May 21, 2019"
 output:
   html_document:
     df_print: paged
@@ -16,9 +16,35 @@ Much can be learned about astronomical objects through data visualizations. Usin
 
 ```{r}
 library(ggplot2)
+library(colorRamps)
+library(png)
 ```
 
 ```{r}
 Exoplanet.Archive <- read.csv(file="composite_planet_data.csv")
 Exoplanet.Catalog <- read.csv(file="exoplanet.eu_catalog.csv")
+```
+
+```{r}
+img <- readPNG("star_field.png")
+```
+
+```{r}
+ggplot(Exoplanet.Archive, aes(x=fst_logg, y=fst_lum)) + 
+  
+  geom_point(aes(color=fst_teff, size=fst_rad)) +
+  
+  scale_colour_gradientn(colors=rev(blue2red(200)), limits=c(3000,            8000), name="Effective Temperature (K)") +
+  
+  scale_size_continuous(range=c(0, 8), breaks=c(1, 5, 15, 30, 60), name=      "Stellar Radius [Solar radii]") +
+ 
+  ylim(-3, 4) +
+  
+  labs(title="Stellar Luminosity v. Stellar Surface Gravity of Exoplanet Host Stars", x="Stellar Surface Gravity [log10(cm/s**2)]", 
+  y="Stellar Luminosity [log10(Solar luminosity)]") +
+  
+  theme(plot.title=element_text(size=10))
+```
+
+```{r}
 ```
