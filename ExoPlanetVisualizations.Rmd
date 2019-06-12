@@ -72,10 +72,7 @@ scale_fill_discrete(name="Detection Type") +
   
   geom_boxplot()
 ```
-This boxplot depicts the distribution of the mass of exoplanets by the method used to detect them. The type of detection is ordered by color in alphabetical order from left to right. Planets that were detected using a controversial technique or "primary transit, TTV" are clearly very few in number, so these should be ignored. Most of the planets discovered using astrometry and imaging were amongst the largest discovered. Relatively speaking, small planets using both of those methods were few and far between. Astrometry relies on the gravitational effect the exoplanet has on its host star. Considering how massive host stars tend to be, it's no suprise that it would be difficult to detect this effect for smaller planets (as they have relatively weak gravitational pulls). In addition, larger planets tend to be brighter. In many cases, the brightness of its host star drowns out smaller planets because they're normally not as bright, preventing them from being directly imaged. This effectively makes the imaging technique difficult for discovering smaller exoplanets. 
-
-
-
+This boxplot depicts the distribution of the mass of exoplanets by the method used to detect them. The type of detection is ordered by color in alphabetical order from left to right. Planets that were detected using a controversial technique or "primary transit, TTV" are clearly very few in number, so these should be ignored. Most of the planets discovered using astrometry and imaging were amongst the largest discovered. Relatively speaking, small planets using both of those methods were few and far between. Astrometry relies on the gravitational effect the exoplanet has on its host star. Considering how massive host stars tend to be, it's no suprise that it would be difficult to detect this effect for smaller planets (as they have relatively weak gravitational pulls). In addition, larger planets tend to be brighter. In many cases, the brightness of its host star drowns out smaller planets because they're normally not as bright, preventing them from being directly imaged. This effectively makes the imaging technique difficult for discovering smaller exoplanets. Radial velocity and primary transit seem to work well across the board, but have the tendency to favor small planets. Every other method generally seems restricted to smaller planets. 
 
 ```{r}
 ggplot(Exoplanet.Archive, aes(x = fpl_bmassj, y = fpl_dens)) +
@@ -97,4 +94,5 @@ ggplot(Exoplanet.Archive, aes(x = fpl_bmassj, y = fpl_dens)) +
   
   labs(title = "Exoplanet Density vs. Exoplanet Mass", x = "Density [g/cm**3]", y="Mass [Jupiter mass]")
 ```
+This bubble graph plots the mass of exoplanets against their own density. The size of each point represents the radius of the exoplanet, while it's color represents its temperature. Contrary to astronomical meaning, cooler stars were given a bluer color, while hotter stars were given a redder color. 
 
