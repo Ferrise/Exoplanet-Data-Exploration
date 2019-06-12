@@ -57,3 +57,17 @@ This bubble graph plots stellar luminosity (intrinsic brightness) against stella
 Think about the lifecycle a star. The line of points appearing before all of the blue stars are clearly red, orange, and yellow supergiants and giants. They are low in temperature, but massive in size. This indicates that they are nearing the end of their life -- consequently, the outer layers of those stars contain less mass. Eventually, as the layers of the giants are shed, the mass of their surface generally becomes larger and larger (until its iron core is reached), in turn, increasing the surface gravity of the star. This must be why smaller stars have greater surface gravity. 
 
 The rest of the graph (starting from the cluster of blue stars), resembles the main sequence. Outside of the deviant giants, hotter stars are more luminous and larger in size since they burn through their fuel more quickly. Since hotter stars have more hydrogen at their surface, there is less mass at their surface as hydrogen is the lightest element. In turn, the disparity in gravity between larger, hotter stars along the main sequene is explained.  
+
+
+
+```{r}
+ggplot(Exoplanet.Catalog, aes(x = detection_type, y = mass, fill = detection_type)) +
+  theme(axis.text.x=element_blank(), axis.ticks.x = element_blank(), ) +
+  
+scale_fill_discrete(name="Detection Type") +
+  
+  ylim(0, 60) +
+  labs(title = "Exoplanet Mass by Detection Type", x ="", y = "Mass [Jupiter mass]") +
+  geom_boxplot()
+```
+
