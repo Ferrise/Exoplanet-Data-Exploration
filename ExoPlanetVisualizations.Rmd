@@ -70,4 +70,17 @@ scale_fill_discrete(name="Detection Type") +
   labs(title = "Exoplanet Mass by Detection Type", x ="", y = "Mass [Jupiter mass]") +
   geom_boxplot()
 ```
+```{r}
+ggplot(Exoplanet.Archive, aes(x = fpl_bmassj, y = fpl_dens)) +
+  annotation_custom(rasterGrob(img, 
+                               width = unit(1,"npc"), 
+                               height = unit(1,"npc")), 
+                               -Inf, Inf, -Inf, Inf) +
+  geom_point(aes(color= fpl_eqt, size=fpl_rade)) + 
+  xlim(0, 20) + 
+  ylim(0, 20) +
+    scale_colour_gradientn(colors= blue2red(200), limits=c(0, 3000), name="Equilibrium Temperature (K)") +
+   scale_size_continuous(range=c(0, 8), breaks=c(1, 5, 10, 20, 50), name="Radius [Earth radii]") +
+  labs(title = "Exoplanet Density vs. Exoplanet Mass", x = "Density [g/cm**3]", y="Mass [Jupiter mass]")
+```
 
